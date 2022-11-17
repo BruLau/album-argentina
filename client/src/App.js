@@ -3,6 +3,7 @@ import './App.css';
 import { Route, BrowserRouter, Switch, Navigate, Outlet, Redirect } from 'react-router-dom'; 
 import Home from './components/home/home.jsx';
 import styles from "./components/home/home.module.css";
+import FormRegister from './components/formRegister/formRegister';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/register" component={FormRegister} />
         </Switch>
       </BrowserRouter>
    </div>

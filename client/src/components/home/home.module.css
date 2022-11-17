@@ -10,12 +10,21 @@
     margin-top: 20px;
     color: azure;
 }
-.image{
-   
+h1{
+    color: azure;
 }
+
 .pantalla{
     margin-top: 40px;
  width: 100%;
 display: flex;
 justify-content: center;
+}
+
+.formRegister{
+  
+
+}
+.form{
+    margin-top: 32px;
 }
