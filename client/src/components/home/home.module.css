@@ -1,0 +1,21 @@
+.fondo{
+    background:url('../../imagenes/fondo.png') ;
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+.h1home{
+    margin-top: 20px;
+    color: azure;
+}
+.image{
+   
+}
+.pantalla{
+    margin-top: 40px;
+ width: 100%;
+display: flex;
+justify-content: center;
+}
