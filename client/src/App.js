@@ -4,7 +4,7 @@ import { Route, BrowserRouter, Switch, Navigate, Outlet, Redirect } from 'react-
 import Home from './components/home/home.jsx';
 import styles from "./components/home/home.module.css";
 import FormRegister from './components/formRegister/formRegister';
-
+import FormLogin from './components/formLogin/formLoging.jsx';
 function App() {
   return (
    <div className={styles.fondo}>
@@ -12,6 +12,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={FormRegister} />
+          <Route exact path="/login" component={FormLogin} />
         </Switch>
       </BrowserRouter>
    </div>

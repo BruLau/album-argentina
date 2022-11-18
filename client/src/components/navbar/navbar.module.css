@@ -1,3 +1,9 @@
 .navbar{
     margin-top: 20px;
+    border-bottom: 2px solid #efb810;
+    border-top: 2px solid #efb810;
+    text-decoration: none;
+}
+.decoration{
+    text-decoration: none;
 }

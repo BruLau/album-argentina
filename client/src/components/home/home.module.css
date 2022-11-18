@@ -17,14 +17,19 @@ h1{
 .pantalla{
     margin-top: 40px;
  width: 100%;
+ 
 display: flex;
 justify-content: center;
+align-items:center;
 }
 
-.formRegister{
-  
-
+.yatenes{
+    margin-top: 10px;
+    color: azure;
 }
 .form{
     margin-top: 32px;
+}
+#btndorado{
+    color:#efb810;
 }

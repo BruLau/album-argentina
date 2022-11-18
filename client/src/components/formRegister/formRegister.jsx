@@ -3,6 +3,7 @@ import {useSelector } from "react-redux";
 import styles from "../home/home.module.css";
 import Footer from '../footer/footer.jsx'
 import NavBar from '../navbar/navbar.jsx'
+import { Link, useHistory } from "react-router-dom";
 export default function FormRegister() {
   return (
     <div className={styles.formRegister} align="center">
@@ -35,9 +36,10 @@ export default function FormRegister() {
     </div>
     <br></br>
   </div>
-  <button className="btn btn-primary" type="submit">Submit form</button>
+  <button className="btn btn-outline-warning" type="submit">Registrarse</button>
 </form>
-<h6 className={styles.yatenes}>¿Ya tenes una cuenta? inicia sesion</h6>
+<h6 className={styles.yatenes}>¿Ya tenes una cuenta? </h6>
+<Link to= {`/login`}><h6 className={styles.yatenes}>inicia sesion</h6></Link>
 <Footer></Footer>
     </div>
   );
