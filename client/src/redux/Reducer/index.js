@@ -2,7 +2,7 @@ import Swal from "sweetalert";
 
 const initialState = {
   lodgings: [],
-
+quiz:[]
 };
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -23,7 +23,11 @@ function rootReducer(state = initialState, action) {
           loader: false,
         };
       }
-
+      case "GET_QUIZ":
+        return {
+          ...state,
+          quiz: action.payload,
+        };
 
     default:
       return { ...state };
