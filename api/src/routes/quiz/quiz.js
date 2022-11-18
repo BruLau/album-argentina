@@ -22,5 +22,25 @@ router.post("/", async (req, res) => {
 //     }
 //   });
   
+router.get("/", async (req, res) => {
+  let preguntas = await quiz.find();
+   try {
+         res.send(preguntas);  
+   } catch (err) {
+     res.json(err);
+   }
+ });
+
+ router.get("/:level", async(req,res) => {
+  try {
+    quiz.find({level: req.params.level},(error, guest)=>{
+          res.json(guest)
+      })
+  }
+  catch(error) {
+    console.log(error)
+      res.status(500).send(error)
+  }
+})
   
  module.exports = router;

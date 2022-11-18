@@ -8,6 +8,7 @@ const QuizSchema = new mongoose.Schema({
   mal1: { type: String, required: true },
   mal2: { type: String, required: true },
   mal3: { type: String, required: true },
+  level: { type: Number},
 });
 
 const model = mongoose.model("quiz", QuizSchema);

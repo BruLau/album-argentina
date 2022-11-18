@@ -50,5 +50,32 @@ router.get("/", async (req, res) => {
         res.status(500).send(error)
     }
   })
+
+  // router.patch("/:_id", async (req, res) => {
+  //   try {
+  //     console.log(req.body)
+  // await user.findByIdAndUpdate(req.params._id, (req.body.level + 1));
+  // res.send("actualizado con exito")
+  // } catch (error) {
+  // res.status(400).send("no se pudo actualizar el usuario");
+  // console.log(error);
+  // }
+  // })
   
+  router.patch("/:_id", async (req, res) => {
+
+    user.find({_id: req.params._id},(error, guest)=>{
+      console.log(guest[0].level)
+    user.findByIdAndUpdate(req.params._id, { level: guest[0].level + 1 },
+                                function (err, docs) {
+        if (err){
+            console.log(err)
+            res.status(400).send("no se pudo actualizar el usuario");
+        }
+        else{
+            console.log("Updated User : ", docs);
+            res.send("actualizado con exito")
+        }
+    });})
+    })
  module.exports = router;

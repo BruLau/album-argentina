@@ -18,7 +18,7 @@ export default function NavBar() {
         <li className="nav-item">
           <a className="nav-link" href="#"><h5>puntuaciones</h5></a>
         </li>
-        <Link className={styles.decoration} to= {`/register`}><li className="nav-item">
+        <Link className={styles.decoration} to= {`/perfil`}><li className="nav-item">
         <a className="nav-link"><h5>tu perfil</h5></a>
           
         </li></Link>
