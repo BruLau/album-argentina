@@ -3,18 +3,25 @@ import {useSelector } from "react-redux";
 import Footer from '../footer/footer.jsx'
 import NavBar from '../navbar/navbar.jsx'
 import styles from "./home.module.css";
-import FormRegister from '../formRegister/formRegister.jsx'
-import album from "../../imagenes/album.png"
-
+import imagenes from "../../imagenes/imagenes.js";
+import FormLogin from "../formLogin/formLoging.jsx";
 export default function Home() {
+  let guestId = localStorage.getItem("userInfo");
+  let User = JSON.parse(guestId)
   return (
-    <div >
+      User ?
+      <div >
       <h1 className={styles.h1home} align="center">ALBUM ARGENTINA 2022</h1>
       <NavBar className={styles.navbar}></NavBar>
       <div className={styles.pantalla}>
-      <img src={album} className={styles.image} alt="no encontre la imagen" ></img>
+      <img src={imagenes[User.level]} className={styles.image} alt="no encontre la imagen" ></img>
       </div>
     <Footer></Footer>
-    </div>
+    </div> : 
+    <div>
+    <FormLogin></FormLogin>
+  <Footer></Footer>
+  </div>
+   
   );
 }
