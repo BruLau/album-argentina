@@ -1,38 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from "react-router-dom";
+import s from "./Quiz.module.css";
 import styles from "../navbar/navbar";
 import FormLogin from "../formLogin/formLoging";
 import NavBar from "../navbar/navbar";
 import Footer from "../footer/footer";
-import s from "./Quiz.module.css";
+
 import { getQuiz } from "../../redux/Actions";
+import axios from "axios";
 export default function Quiz() {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getQuiz(1));
-      }, [dispatch]);
-
-    let quiz = useSelector((state) => state.quiz);
-    let pregRamdom = quiz[Math.floor(Math.random() * quiz.length)]
-if(pregRamdom){
-    let arrObj = Object.values(pregRamdom)
-    let cont = 0;
-    var arrOrd =[]
-    for(let i= 2; i<6;i++ ){
-        arrOrd[cont] = arrObj[i]
-        cont++
-    }
-    var arrDesord =[]
-    arrDesord = arrOrd.sort(function() { return Math.random() - 0.5 });
-    console.log(arrDesord)
-}
-
-    
-    
-
     let guestId = localStorage.getItem("userInfo");
     let user = JSON.parse(guestId);
+    console.log(user)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getQuiz(user.level));
+      }, [dispatch]);
+    
+      const [input, setInput] = useState([]);
+   
+    let quiz = useSelector((state) => state.quiz);
+    async function  submitHandler(e) {
+    if(input.rb==quiz[0].correcta){
+    await axios.patch(`/api/user/${user._id}`)
+    let dataStorage = JSON.parse(localStorage.getItem("userInfo"));
+    dataStorage.level = dataStorage.level + 1;
+    localStorage.setItem("userInfo", JSON.stringify(dataStorage));
+    alert("hola") 
+}
+    else{
+        alert("fas") 
+    }
+}
+   
+function handleChange(e) {
+      setInput({
+        ...input,
+        [e.target.name]: e.target.value,
+      });}
+
+
   return (
  user ?
 <div className={s.perfilcss} align="center">
@@ -40,18 +48,23 @@ if(pregRamdom){
       <NavBar className={styles.navbar}></NavBar>
       <br></br>
 <h1>Preguntas</h1>
-<div>
-<input type="radio" id="html" name="fav_language" value="HTML"></input>
-<label for="html">{arrDesord ? arrDesord[0] : "Cargando..."}</label><br></br>
-<input type="radio" id="css" name="fav_language" value="CSS"></input>
-<label for="css">{arrDesord ? arrDesord[1] : "Cargando..."}</label><br></br>
-<input type="radio" id="css" name="fav_language" value="CSS"></input>
-<label for="css">{arrDesord ? arrDesord[2] : "Cargando..."}</label><br></br>
-<input type="radio" id="javascript" name="fav_language" value="JavaScript"></input>
-<label for="javascript">{arrDesord ? arrDesord[3] : "Cargando..."}</label>
-</div>
+<div align="center">
+    {console.log(quiz[0] ? quiz[0].pregunta : "Cargando...")}
+<h2>{quiz[0] ? quiz[0].pregunta  : "Cargando..."}</h2>
 <br></br>
-<Link className={styles.decoration} to= {`/login`}><button onClick={() => {localStorage.removeItem('userInfo')}} className="btn btn-outline-warning">Cerrar sesion</button></Link>
+    {/* <form onSubmit={submitHandler}> */}
+<input  onChange={handleChange} className={s.radio}  type="radio" name = "rb" id="html"  value={quiz[0] ? quiz[1][0] : "Cargando..."}></input>
+<h4 className="form-check-label"  for="html">{quiz[0] ? quiz[1][0] : "Cargando..."}</h4><br></br>
+<input className={s.radio}  onChange={handleChange} name = "rb" type="radio" id="css"  value={quiz[0] ? quiz[1][1] : "Cargando..."}></input>
+<h4  className="form-check-label"  for="css">{quiz[0] ? quiz[1][1] : "Cargando..."}</h4><br></br>
+<input  className={s.radio}  onChange={handleChange} name = "rb" type="radio" id="css"  value={quiz[0] ? quiz[1][2] : "Cargando..."}></input>
+<h4 className="form-check-label"  for="css">{quiz[0] ? quiz[1][2] : "Cargando..."}</h4><br></br>
+<input className={s.radio} onChange={handleChange} name = "rb" type="radio" id="javascript"  value={quiz[0] ? quiz[1][3] : "Cargando..."}></input>
+<h4  className="form-check-label "  for="javascript">{quiz[0] ? quiz[1][3] : "Cargando..."}</h4>
+{/* </form>*/}</div> 
+<br></br>
+{/* <input value="Iniciar Sesión" className="btn btn-outline-warning" type="submit" ></input> */}
+<button type="submit" value="Submit" onClick={submitHandler } className="btn btn-outline-warning">Comprobar</button>
 <Footer></Footer>
 </div>:
 <FormLogin></FormLogin>

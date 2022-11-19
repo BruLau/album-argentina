@@ -21,10 +21,23 @@ export function getQuiz(payload) {
     return async function (dispatch) {
       try {
         const res = await axios.get("/api/quiz/" + payload);
-        console.log(res)
+    
+        var pregRamdom = res.data[Math.floor(Math.random() * res.data.length)]
+      
+        let arrObj = Object.values(pregRamdom)
+        let cont = 0;
+        var arrOrd =[]
+        for(let i= 2; i<6;i++ ){
+            arrOrd[cont] = arrObj[i]
+            cont++
+        }
+        var arrDesord =[]
+        arrDesord = arrOrd.sort(function() { return Math.random() - 0.5 });
+        console.log(arrDesord)
+        console.log("final")
         return dispatch({
           type: "GET_QUIZ",
-          payload: res.data,
+          payload: [pregRamdom,arrDesord ],
         });
       } catch (error) {
         console.log(error);

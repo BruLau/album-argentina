@@ -1,8 +1,9 @@
 import Swal from "sweetalert";
-
+import axios from "axios";
 const initialState = {
   lodgings: [],
-quiz:[]
+quiz:[],
+desordenado: [],
 };
 function rootReducer(state = initialState, action) {
   switch (action.type) {

@@ -19,7 +19,7 @@ export default function Home() {
       </div>
       <br></br>
       <div align="center">
-      <Link  className={styles.decoration} to= {`/login`}><button  className="btn btn-outline-warning">Conseguir figurita {User.level} </button></Link>
+      <Link  className={styles.decoration} to= {`/quiz`}><button  className="btn btn-outline-warning">Conseguir figurita {User.level} </button></Link>
       </div>
     <Footer></Footer>
     </div> : 
